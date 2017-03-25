@@ -44,17 +44,6 @@ vers le répertoire Git, les explications d’installation, le nombre
 d’heures passés dessus, et la liste des problèmes/points bloquants
 rencontrés.
 
-## setup
-
-install docker
-    Mac : https://docs.docker.com/docker-for-mac/
-    Linux : https://docs.docker.com/engine/installation/
-(you may want to increase the ram available to docker in the settings)
-
-make install-git-hooks
-make setup
-make install
-make start
 
 ## most useful command
 
@@ -62,7 +51,16 @@ See ```make help```
 
 ## Setup
 
-### Increase available ram
+### install git hooks
+
+```make install-git-hooks```
+
+### install docker
+
+    Mac : https://docs.docker.com/docker-for-mac/
+    Linux : https://docs.docker.com/engine/installation/
+
+#### Increase available ram
 
 Click on the docker menu bar icon and choose Preferences (or hit Cmd-,)
 and in the general pane, increase memory limit to 4Gb.
@@ -85,6 +83,7 @@ Usefull commands are :
 ```make restart-api```: Manually restart api container
 ```make dev```: Start a watcher that reloads containers on files changes and output api log in console
 ```make test```: Run tests
+```make log-api```: Will show you the api logs, including the debugger URLs
 
 ## Services address
  * api : http://localhost:8080

@@ -1,0 +1,23 @@
+{
+  "database": {
+    "host": "mysql",
+    "user": "linkstore",
+    "pass": "linkstore",
+    "db": "linkstore",
+    "port": 3306,
+    "verbose": false
+  },
+  "request": {
+    "global": {
+      "timeout": 500,
+      "maxAttempts": 1,
+      "retryDelay": 100
+    },
+    "routes": [
+      { "path": "GET http://domain.test/", "opts": { "timeout": 400 } }
+    ]
+  },
+  "port": 5000,
+  "shutdownTimeout": 2000,
+  "assetsPath": "./public"
+}

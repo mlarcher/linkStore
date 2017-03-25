@@ -1,0 +1,7 @@
+{
+  "database": {
+    "verbose": false
+  },
+  "mocksBaseUrl": "http://mocks:8080",
+  "apiBaseUrl": "localhost:8080"
+}

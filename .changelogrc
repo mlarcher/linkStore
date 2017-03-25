@@ -1,0 +1,40 @@
+{
+    "app_name": "LinkStore",
+    "logo": "http://img.clipartall.com/database-clipart-database-clipart-170_170.jpg",
+    "intro": "Here are the changes since the last tagged version.",
+    "include_merge": false,
+    "sections": [
+        {
+            "title": "Bug Fixes",
+            "grep": "^fix"
+        },
+        {
+            "title": "Features",
+            "grep": "^feat"
+        },
+        {
+            "title": "Documentation",
+            "grep": "^docs"
+        },
+        {
+            "title": "Breaking changes",
+            "grep": "BREAKING"
+        },
+        {
+            "title": "Refactor",
+            "grep": "^refactor"
+        },
+        {
+            "title": "Style",
+            "grep": "^style"
+        },
+        {
+            "title": "Test",
+            "grep": "^test"
+        },
+        {
+            "title": "Chore",
+            "grep": "^chore"
+        }
+    ]
+}

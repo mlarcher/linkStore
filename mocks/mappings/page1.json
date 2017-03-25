@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/page1"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "/page1.html",
+    "headers": {
+      "Content-Type": "text/html; charset=UTF-8"
+    }
+  }
+}
+
+

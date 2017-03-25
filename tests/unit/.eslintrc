@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "no-param-reassign": 0,
+    "no-unused-expressions": 0
+  },
+  "globals": {
+    "describe": true,
+    "it": true,
+    "before": true,
+    "after": true,
+    "beforeEach": true,
+    "afterEach": true
+  }
+}
