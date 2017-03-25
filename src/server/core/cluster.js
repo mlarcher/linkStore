@@ -31,7 +31,7 @@ exports.MESSAGE_GRACEFUL = 'graceful_shutdown';
  * @memberOf core.cluster
  * @type {string}
  */
-exports.MESSAGE_RELOAD   = 'reload';
+exports.MESSAGE_RELOAD = 'reload';
 
 
 exports.forkWorker = cluster => cluster.fork()
@@ -95,7 +95,7 @@ exports.reload = cluster => {
     logger.debug('restarting cluster workers');
 
     let currentWorkerIndex = 0;
-    const workersIds = Object.keys(cluster.workers);
+    const workersIds       = Object.keys(cluster.workers);
 
     const restartWorker = () => {
         if (currentWorkerIndex === workersIds.length) {

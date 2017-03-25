@@ -12,7 +12,9 @@ const os          = require('os');
 const CoreCluster = require('./core/cluster');
 const logger      = require('./core/utils/logger');
 
-const workersCount = (process.env.WORKERS) ? parseInt(process.env.WORKERS, 10) : os.cpus().length;
+const workersCount = (
+                         process.env.WORKERS
+                     ) ? parseInt(process.env.WORKERS, 10) : os.cpus().length;
 
 if (cluster.isMaster) {
     logger.debug(`cluster master started (${process.pid})`);

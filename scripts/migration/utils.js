@@ -10,14 +10,16 @@
 'use strict';
 
 
-const fs = require('fs');
+const fs   = require('fs');
 const path = require('path');
-const _ = require('lodash');
+const _    = require('lodash');
 
 exports.resolvePath = (migrationFolder) => {
     return new Promise((resolve, reject) => {
         fs.realpath(migrationFolder, (err, path) => {
-            if (err) return reject(err);
+            if (err) {
+                return reject(err);
+            }
             resolve(path);
         });
     });
@@ -26,7 +28,9 @@ exports.resolvePath = (migrationFolder) => {
 exports.getFiles = (folder) => {
     return new Promise((resolve, reject) => {
         fs.readdir(folder, (err, files) => {
-            if (err) return reject(err);
+            if (err) {
+                return reject(err);
+            }
             resolve(files);
         })
     })
@@ -35,7 +39,9 @@ exports.getFiles = (folder) => {
 exports.rmFile = (file) => {
     return new Promise((resolve, reject) => {
         fs.unlink(file, (err) => {
-            if (err) return reject(err);
+            if (err) {
+                return reject(err);
+            }
             resolve();
         })
     })
@@ -43,10 +49,12 @@ exports.rmFile = (file) => {
 
 exports.removeFiles = (folder) => {
     return exports.getFiles(folder)
-        .then( (files) => {
+        .then((files) => {
             const promises = [];
             _.forEach(files, function (file) {
-                if (file !== '.keep') promises.push(exports.rmFile(path.join(folder, `/${file}`)))
+                if (file !== '.keep') {
+                    promises.push(exports.rmFile(path.join(folder, `/${file}`)))
+                }
             });
 
             return Promise.all(promises);
@@ -56,7 +64,9 @@ exports.removeFiles = (folder) => {
 exports.readFile = (file) => {
     return new Promise((resolve, reject) => {
         fs.readFile(file, (err, content) => {
-            if (err) return reject(err);
+            if (err) {
+                return reject(err);
+            }
             resolve(content);
         });
     });
@@ -65,7 +75,9 @@ exports.readFile = (file) => {
 exports.writeFile = (file, content) => {
     return new Promise((resolve, reject) => {
         fs.writeFile(file, content, (err) => {
-            if (err) return reject(err);
+            if (err) {
+                return reject(err);
+            }
             resolve();
         });
     });
@@ -74,7 +86,7 @@ exports.writeFile = (file, content) => {
 exports.makeMigrationFile = (knexFolder, relativeSqlFolder, filename, templateFile) => {
     return exports.readFile(templateFile)
         .then((template) => {
-            const content = template.toString().replace('FIlENAME', filename).replace('FOLDER', relativeSqlFolder);
+            const content    = template.toString().replace('FIlENAME', filename).replace('FOLDER', relativeSqlFolder);
             const outputFile = path.join(knexFolder, `/${filename}.js`);
 
             return exports.writeFile(outputFile, content);

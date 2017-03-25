@@ -8,9 +8,9 @@
  */
 'use strict';
 
-const chai = require('chai');
+const chai   = require('chai');
 const expect = chai.expect;
-const fork = require('child_process').fork;
+const fork   = require('child_process').fork;
 
 const config = require('../../../../src/server/core/config');
 

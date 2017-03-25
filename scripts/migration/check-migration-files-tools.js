@@ -14,7 +14,7 @@ var _ = require('lodash');
 
 function checkFiles(files) {
     var sqlDownFiles = [];
-    var sqlUpFiles = [];
+    var sqlUpFiles   = [];
 
     var regex = /^(\d{12}_.*)\.(up|down)\.sql$/;
 
@@ -23,9 +23,9 @@ function checkFiles(files) {
         var migrationTypeMatch = sqlFile.match(regex);
         if (!migrationTypeMatch) {
             throw new RangeError(sqlFile + ' name is malformed. It should end with .up.sql or .down.sql'
-                                               + ' and be prefixed by the date.');
+                                 + ' and be prefixed by the date.');
         }
-        var name = migrationTypeMatch[1];
+        var name      = migrationTypeMatch[1];
         var direction = migrationTypeMatch[2];
 
         if (direction === 'down') {
@@ -37,18 +37,19 @@ function checkFiles(files) {
 
     var differences = _.difference(sqlDownFiles, sqlUpFiles).concat(_.difference(sqlUpFiles, sqlDownFiles));
     if (differences.length) {
-        throw new Error('Some migration files do not have both an "up" and a "down" version:\n' + differences.join(', \n') + '\n');
+        throw new Error('Some migration files do not have both an "up" and a "down" version:\n' + differences.join(
+                ', \n') + '\n');
     }
 
     sqlDownFiles.forEach(function (name) {
         var datePart = name.split('_')[0];
-        var year = datePart.substring(0, 4);
-        var month = datePart.substring(4, 6);
-        var day = datePart.substring(6, 8);
-        var hour = datePart.substring(8, 10);
-        var min = datePart.substring(10);
-        var date = new Date(year, month - 1, day, hour, min);
-        var now = new Date();
+        var year     = datePart.substring(0, 4);
+        var month    = datePart.substring(4, 6);
+        var day      = datePart.substring(6, 8);
+        var hour     = datePart.substring(8, 10);
+        var min      = datePart.substring(10);
+        var date     = new Date(year, month - 1, day, hour, min);
+        var now      = new Date();
         now.setHours(now.getHours() + 12);
 
 

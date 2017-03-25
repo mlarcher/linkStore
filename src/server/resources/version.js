@@ -8,7 +8,7 @@
  */
 'use strict';
 
-const fs           = require('fs');
+const fs = require('fs');
 
 const pkg = require('../../../package.json');
 
@@ -22,7 +22,7 @@ const pkg = require('../../../package.json');
  */
 module.exports = (req, res) => {
     const baseInfos = {
-        name:     pkg.name,
+        name: pkg.name,
     };
 
     fs.readFile(`${__dirname}/../../../server-revision.json`, (err, revisionData) => {

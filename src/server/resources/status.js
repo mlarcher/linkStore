@@ -8,14 +8,14 @@
  */
 'use strict';
 
-const pkg    = require('../../../package.json');
+const pkg = require('../../../package.json');
 
 
 module.exports = (req, res) => {
     const output = {
-        status:     'ok',
-        version:    pkg.version,
-        uptime:     `${process.uptime()} second(s)`,
+        status:  'ok',
+        version: pkg.version,
+        uptime:  `${process.uptime()} second(s)`,
     };
     res.send(output);
 };

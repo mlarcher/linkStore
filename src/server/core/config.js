@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 'use strict';
-const _   = require('lodash');
-const path   = require('path');
+const _    = require('lodash');
+const path = require('path');
 
 /**
  * @namespace config
@@ -70,7 +70,9 @@ exports.dump = () => {
  * @returns {*}: return what we want as a value, or undefined to let the default behaviour kick in
  */
 const customizer = (objValue, srcValue) => {
-    if (_.isArray(srcValue)) return srcValue;
+    if (_.isArray(srcValue)) {
+        return srcValue;
+    }
 };
 
 

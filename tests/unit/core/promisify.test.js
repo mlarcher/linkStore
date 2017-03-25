@@ -18,7 +18,7 @@ chai.use(sinonChai);
 chai.use(chaiAsPromised);
 
 const promisify           = require('../../../src/server/core/utils/promisify');
-const logger              =  require('../../../src/server/core/utils/logger');
+const logger              = require('../../../src/server/core/utils/logger');
 const loggerStubUtilities = require('../loggerStubUtilities');
 
 
@@ -30,7 +30,7 @@ describe('promisify', () => {
     const successFn = function (...args) {
         args[args.length - 1](null, args[0]);
     };
-    const errorFn = function (...args) {
+    const errorFn   = function (...args) {
         args[args.length - 1]('error');
     };
 

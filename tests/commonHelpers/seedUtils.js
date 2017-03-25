@@ -8,15 +8,15 @@
  */
 'use strict';
 
-const _                          = require('lodash');
-const bluebird                   = require('bluebird');
-const faker                      = require('faker');
-const moment                     = require('moment');
+const _        = require('lodash');
+const bluebird = require('bluebird');
+const faker    = require('faker');
+const moment   = require('moment');
 
 const config = require('../../src/server/core/config');
-const db = require('../../src/server/db');
+const db     = require('../../src/server/db');
 
-const tables = ['links'];
+const tables         = ['links'];
 const DB_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
 
@@ -43,7 +43,7 @@ const initTableColumns = () => {
         .then(result => {
             tableColumnNames = result;
         })
-    ;
+        ;
 };
 
 /**
@@ -75,7 +75,7 @@ const buildItemWithExtraParams = (item, attributes, itemAttributes) => {
 };
 
 const uniqData = {};
-const uniq = ([dataGenFn, ...dataGenParams], key) => {
+const uniq     = ([dataGenFn, ...dataGenParams], key) => {
 
     if (!uniqData[key]) {
         uniqData[key] = new Set();

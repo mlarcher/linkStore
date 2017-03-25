@@ -11,8 +11,8 @@
 // This script is used in Docker based environment to check MySQL availability before starting the api
 'use strict';
 
-var config         = require('../src/server/core/config');
-var mysql          = require('mysql');
+var config = require('../src/server/core/config');
+var mysql  = require('mysql');
 
 var currentRetries = 0;
 var maxRetries     = 10;

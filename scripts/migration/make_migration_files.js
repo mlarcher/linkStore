@@ -9,17 +9,17 @@
 
 'use strict';
 
-const fs = require('fs');
+const fs   = require('fs');
 const path = require('path');
-const _ = require('lodash');
+const _    = require('lodash');
 
-const utils = require('./utils');
+const utils                    = require('./utils');
 const checkMigrationFilesTools = require('./check-migration-files-tools');
 
 const migrationFolder = `${__dirname}/../../migrations`;
-const sqlFolder = 'sql';
-const knexFolder = 'knex';
-const tplFile = path.join(__dirname, './migration_file.tpl');
+const sqlFolder       = 'sql';
+const knexFolder      = 'knex';
+const tplFile         = path.join(__dirname, './migration_file.tpl');
 
 utils.removeFiles(path.join(migrationFolder, `/${knexFolder}`))
     .then(() => {

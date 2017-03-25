@@ -9,11 +9,11 @@
  */
 'use strict';
 
-const _ = require('lodash');
+const _        = require('lodash');
 const bluebird = require('bluebird');
 
 const seedUtils = require('../tests/commonHelpers/seedUtils');
-const db = require('../src/server/db');
+const db        = require('../src/server/db');
 
 
 exports.load = knex => {

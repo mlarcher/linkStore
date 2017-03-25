@@ -18,8 +18,8 @@ let error;
 
 exports.stubLogger = () => {
     sinon.stub(logger, 'debug', () => {});
-    sinon.stub(logger, 'info',  () => {});
-    sinon.stub(logger, 'warn',  () => {});
+    sinon.stub(logger, 'info', () => {});
+    sinon.stub(logger, 'warn', () => {});
     sinon.stub(logger, 'error', () => {});
 };
 
@@ -32,8 +32,8 @@ exports.restoreLogger = () => {
 
 exports.loggerSpy = () => {
     debug = sinon.spy();
-    info = sinon.spy();
-    warn = sinon.spy();
+    info  = sinon.spy();
+    warn  = sinon.spy();
     error = sinon.spy();
 
     return {
@@ -44,9 +44,12 @@ exports.loggerSpy = () => {
     };
 };
 
-exports.resetSpy = () => ({
-    debug: debug.reset(),
-    info: info.reset(),
-    warn: warn.reset(),
-    error: error.reset(),
-});
+exports.resetSpy =
+    () => (
+        {
+            debug: debug.reset(),
+            info:  info.reset(),
+            warn:  warn.reset(),
+            error: error.reset(),
+        }
+    );
