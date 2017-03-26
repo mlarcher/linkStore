@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * This file is part of the "Linkstore" project.
  *
@@ -9,10 +8,8 @@
  */
 'use strict';
 
-const seedUtils = require('../tests/commonHelpers/seedUtils');
+const configure = function () {
+    this.setDefaultTimeout(15 * 1000);
+};
 
-seedUtils.reset().then(() => {
-    process.exit(0);
-}).catch((err) => {
-    process.exit(1);
-});
+module.exports = configure;

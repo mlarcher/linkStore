@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * This file is part of the "Linkstore" project.
  *
@@ -9,10 +8,7 @@
  */
 'use strict';
 
-const seedUtils = require('../tests/commonHelpers/seedUtils');
 
-seedUtils.reset().then(() => {
-    process.exit(0);
-}).catch((err) => {
-    process.exit(1);
-});
+module.exports = function () {
+    this.API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:5000';
+};

@@ -236,7 +236,7 @@ install-git-hooks: ##@git-hooks Install git hooks
 
 ############## TEST ##############
 
-test: lint test-unit-cover ##@test run all test suite
+test: lint test-unit-cover test-func ##@test run all test suite
 
 check-migration-files: ##@test Check that new migration are posterior and have an up and down file
 	@make make-in-node MAKE_RULE=_check-migration-files
@@ -258,11 +258,32 @@ _test-unit: ##@test run unit tests
 	@echo "${YELLOW}Running unit tests${RESET}"
 	@TEST_MODE=unitTest ${NODE_MODULES_BIN}/mocha tests/unit --colors --opts tests/unit/mocha.opts
 
-test-unit-cover: ##@test run unit test with code coverage report
+test-unit-cover: ##@test run unit test with code coverage output
 	@make make-in-api MAKE_RULE=_test-unit-cover
 
-_test-unit-cover: ##@test run unit test with code coverage report
+_test-unit-cover: ##@test run unit test with code coverage output
 	@${NODE_MODULES_BIN}/nyc make _test-unit
+
+test-unit-cover-report: ##@test run unit test with code coverage report
+	@make make-in-api MAKE_RULE=_test-unit-cover-report
+
+_test-unit-cover-report: ##@test run unit test with code coverage report
+	@${NODE_MODULES_BIN}/nyc --reporter=lcov make _test-unit
+
+
+test-func-cover: ##@test run functional test with code coverage report
+	@make make-in-api MAKE_RULE=_test-func-cover
+
+_test-func-cover: ##@test run functional test with code coverage report
+	@${NODE_MODULES_BIN}/nyc --reporter=lcov make _test-func
+
+test-func: ##@test run functional test. To add args to cucumber, use args env var. 'args="--tags @tag1 --tags @tag2" make test-func'
+	@make make-in-api MAKE_RULE=_test-func
+
+_test-func: ##@test run functional test. To add args to cucumber, use args env var. 'args="--tags @tag1 --tags @tag2" make _test-func'
+	@echo "${YELLOW}Running functional tests${RESET}"
+	@${NODE_MODULES_BIN}/cucumber-js --require tests/func/helpers ${args} tests/func/features
+
 
 ############## PACKAGE ##############
 revision: ##@package make revision file

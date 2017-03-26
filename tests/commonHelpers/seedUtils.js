@@ -1,7 +1,7 @@
 /**
  * This file is part of the "Linkstore" project.
  *
- * (c) 2016 - Orange
+ * (c) 2017 - Ringabell
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,11 +20,45 @@ const tables         = ['links'];
 const DB_DATE_FORMAT = require('../../src/server/dao/baseDao').DB_DATE_FORMAT;
 
 
+exports.load = knex => {
+    const links = [];
+
+    _.range(10).forEach(i => {
+        links.push(exports.buildLink(i + 1));
+    });
+
+    const promisesList = [];
+    promisesList.push(() => { return knex.schema.raw('ALTER TABLE links AUTO_INCREMENT = 0;'); });
+    promisesList.push(() => { return knex('links').insert(links); });
+
+    return bluebird.mapSeries(promisesList, (fn) => { return fn(); });
+};
+
+exports.reset = () => {
+    console.log('emptying db'); // eslint-disable-line no-console
+    return exports.emptyDB().then(() => {
+        console.log('initializing table columns');// eslint-disable-line no-console
+        return exports.initTableColumns();
+    }).then(() => {
+        console.log('loading into database'); // eslint-disable-line no-console
+        return exports.load(db)
+            .then((data) => {
+                console.log('Seeds successfully loaded.'); // eslint-disable-line no-console
+                return data;
+            })
+            .catch((err) => {
+                console.log('\nSomething went wrong'); // eslint-disable-line no-console
+                console.log(err); // eslint-disable-line no-console
+                return Promise.reject(err);
+            });
+    });
+};
+
 let tableColumnNames = {};
 
 const isNilOrFalse = arg => arg === null || arg === undefined || arg === false;
 
-const initTableColumns = () => {
+exports.initTableColumns = () => {
 
     if (!_.isEmpty(tableColumnNames)) {
         return Promise.resolve();
@@ -51,7 +85,7 @@ const initTableColumns = () => {
  * @param {Object} object to clone
  * @returns {Object} - Return a clone of the object
  */
-const clone = object => JSON.parse(JSON.stringify(object));
+exports.clone = object => JSON.parse(JSON.stringify(object));
 
 
 const buildItemWithExtraParams = (item, attributes, itemAttributes) => {
@@ -93,13 +127,13 @@ const uniq     = ([dataGenFn, ...dataGenParams], key) => {
 };
 
 
-const emptyDB = () => {
+exports.emptyDB = () => {
     return bluebird.mapSeries([
         'links',
     ].map(table => db(table).del()), () => {});
 };
 
-const buildLink = (id, attributes) => {
+exports.buildLink = (id, attributes) => {
     if (isNilOrFalse(id)) {
         throw new Error('Missing required params for building partner seed');
     }
@@ -118,11 +152,4 @@ const buildLink = (id, attributes) => {
     }
 
     return link;
-};
-
-module.exports = {
-    initTableColumns,
-    clone,
-    emptyDB,
-    buildLink,
 };

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * This file is part of the "Linkstore" project.
  *
@@ -9,10 +8,14 @@
  */
 'use strict';
 
-const seedUtils = require('../tests/commonHelpers/seedUtils');
+module.exports = function () {
+    this.Before(() => {
+        // Used for API testing
+        this.qs      = {};
+        this.body    = {};
+        this.headers = {};
 
-seedUtils.reset().then(() => {
-    process.exit(0);
-}).catch((err) => {
-    process.exit(1);
-});
+        this.scenarioStorage = new Map();
+    });
+
+};

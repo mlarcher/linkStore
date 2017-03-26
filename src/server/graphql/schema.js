@@ -20,8 +20,8 @@ type Query {
 
 type Mutation {
   addLink(url: String!): Link
-  upVoteLink(id:ID): Link
-  downVoteLink(id:ID): Link
+  upVoteLink(url:String!): Link
+  downVoteLink(url:String!): Link
 }
 `;
 
