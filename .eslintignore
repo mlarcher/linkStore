@@ -4,3 +4,4 @@ scripts/*
 coverage/*
 docs/*
 src/client/node_modules
+src/client/build

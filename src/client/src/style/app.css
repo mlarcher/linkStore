@@ -49,3 +49,7 @@
 .error {
   color: #ff4b21;
 }
+
+.voteBtn {
+  margin-left: 5px;
+}

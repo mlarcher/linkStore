@@ -4,7 +4,7 @@ import { linksListQuery } from './LinksListWithData';
 
 class AddLink extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = { error: null };
     }

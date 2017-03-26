@@ -4,6 +4,8 @@ import {
     graphql,
 } from 'react-apollo';
 import AddLink from './AddLink';
+import UpVote from './UpVote';
+import DownVote from './DownVote';
 
 const LinksList = ({ data: { loading, error, links } }) => {
     if (loading) {
@@ -31,6 +33,8 @@ const LinksList = ({ data: { loading, error, links } }) => {
                             <span className="links_linkUrl">({link.url})</span>
                         </a>
                         [{link.votes} points]
+                        <UpVote url={link.url}/>
+                        <DownVote url={link.url}/>
                     </li>
                 ))}
             </ol>
