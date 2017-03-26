@@ -126,6 +126,16 @@ const uniq     = ([dataGenFn, ...dataGenParams], key) => {
     return value;
 };
 
+const greaterThan = (dataGenFn, range, minValue) => {
+
+    let value;
+    do {
+        value = dataGenFn(range);
+    } while (value < minValue);
+
+    return value;
+};
+
 
 exports.emptyDB = () => {
     return bluebird.mapSeries([
@@ -144,7 +154,7 @@ exports.buildLink = (id, attributes) => {
         updateDate:   moment(faker.date.recent()).format(DB_DATE_FORMAT),
         url:          uniq([faker.internet.url], 'linkUrl'),
         title:        faker.lorem.sentence(),
-        votes:        faker.random.number(100),
+        votes:        greaterThan(faker.random.number, 10, 2),
     };
 
     if (attributes) {

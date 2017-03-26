@@ -1,0 +1,51 @@
+.pageTitle {
+  background: #81d9fc;
+  margin: 0;
+  padding: 15px 30px;
+  border-bottom: solid 1px #3876cf;
+}
+
+.links {
+  margin: 0;
+  padding: 10px;
+  list-style-type: none;
+}
+.links_item {
+  margin-top: 10px;
+  border: solid 1px #ccc;
+  padding: 5px;
+  background: #fff;
+}
+.links_item:first-child {
+  margin-top: 0;
+}
+
+.links_rank {
+  color: #888;
+  padding-right: 10px;
+}
+.links_link {
+  text-decoration: none;
+  color: #3876cf;
+}
+
+.links_link:hover {
+  text-decoration: underline;
+}
+.links_linkTitle {
+  color: #cf7e67;
+  font-weight: bold;
+}
+.links_linkUrl {
+  color: #3876cf;
+  padding-right: 5px;
+}
+
+.addLinkBtn {
+  margin: 10px 10px 0;
+  padding: 3px;
+}
+
+.error {
+  color: #ff4b21;
+}

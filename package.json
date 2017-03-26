@@ -31,6 +31,7 @@
     "eslint-config-airbnb-base": "3.0.1",
     "eslint-plugin-import": "1.8.1",
     "eslint-plugin-mocha": "4.0.0",
+    "eslint-plugin-react": "6.10.3",
     "faker": "3.1.0",
     "git-changelog": "1.1.2",
     "ink-docstrap": "1.3.0",
@@ -39,6 +40,7 @@
     "nock": "9.0.2",
     "normalize-scss": "6.0.0",
     "nyc": "10.0.0",
+    "react-scripts": "0.9.3",
     "sinon": "1.17.6",
     "sinon-as-promised": "4.0.2",
     "sinon-chai": "2.8.0"
