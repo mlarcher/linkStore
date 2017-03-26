@@ -7,7 +7,7 @@ const linksService = require('../services/linksService');
 module.exports = {
     Query:    {
         links: (root, args) => {
-            return baseDao.find('links', args);
+            return baseDao.find('links', args, undefined, { orderBy: { votes: 'desc' } });
         },
     },
     Mutation: {

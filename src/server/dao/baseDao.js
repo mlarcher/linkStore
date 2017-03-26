@@ -37,15 +37,21 @@ exports.DB_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
  * @param {function} [options.dbHandle]    - The db or transaction object
  * @returns {Promise.<Array.<Object>>} An array of results
  */
-exports.find = (table, query, columns = '*', { dbHandle = db } = {}) => {
-    return dbHandle.select(columns)
+exports.find = (table, query, columns = '*', { dbHandle = db, orderBy = {} } = {}) => {
+    const dbQuery = dbHandle.select(columns)
         .from(table)
         .modify(queryBuilder => {
             Object.keys(query).forEach(key => {
                 const value = query[key];
                 queryBuilder.where(key, value);
             });
+
+            Object.keys(orderBy).forEach(field => {
+                queryBuilder.orderBy(field, orderBy[field]);
+            });
         });
+
+    return dbQuery;
 };
 
 /**
