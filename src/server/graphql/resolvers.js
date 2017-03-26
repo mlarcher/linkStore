@@ -1,29 +1,24 @@
 'use strict';
 
-const links = [
-    {
-        id:   1,
-        url: 'http://toto.com',
-    },
-    {
-        id:   2,
-        url: 'http://hop2.com',
-    },
-];
-
-let nextId = 3;
+const baseDao = require('../dao/baseDao');
+// const logger = require('../core/utils/logger');
+const linksService = require('../services/linksService');
 
 module.exports = {
     Query:    {
-        links: () => {
-            return links;
+        links: (root, args) => {
+            return baseDao.find('links', args);
         },
     },
     Mutation: {
         addLink: (root, args) => {
-            const newLink = { id: nextId++, url: args.url };
-            links.push(newLink);
-            return newLink;
+            return linksService.add(args, { fetch: true });
+        },
+        upVoteLink: (root, args) => {
+            return linksService.upVote(args, { fetch: true });
+        },
+        downVoteLink: (root, args) => {
+            return linksService.downVote(args, { fetch: true });
         },
     },
 };

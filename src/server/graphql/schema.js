@@ -15,11 +15,13 @@ type Link {
 }
 
 type Query {
-  links: [Link]
+  links(url: String): [Link]
 }
 
 type Mutation {
   addLink(url: String!): Link
+  upVoteLink(id:ID): Link
+  downVoteLink(id:ID): Link
 }
 `;
 

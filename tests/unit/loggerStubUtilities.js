@@ -1,5 +1,5 @@
 /**
- * This file is part of the "CloudPro" project.
+ * This file is part of the "Linkstore" project.
  *
  * (c) 2016 - Orange
  *

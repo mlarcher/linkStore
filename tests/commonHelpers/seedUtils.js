@@ -1,5 +1,5 @@
 /**
- * This file is part of the "CloudPro" project.
+ * This file is part of the "Linkstore" project.
  *
  * (c) 2016 - Orange
  *
@@ -17,7 +17,7 @@ const config = require('../../src/server/core/config');
 const db     = require('../../src/server/db');
 
 const tables         = ['links'];
-const DB_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+const DB_DATE_FORMAT = require('../../src/server/dao/baseDao').DB_DATE_FORMAT;
 
 
 let tableColumnNames = {};
