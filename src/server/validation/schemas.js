@@ -42,10 +42,12 @@ const urlRegex = new RegExp(
     '$', 'i'
 );
 
+exports.linksUrl = joi.string().regex(urlRegex).required();
+
 /**
  * Validation schema for links
  */
 exports.links = joi.object().required().keys({
-    url: joi.string().regex(urlRegex).required(),
+    url: exports.linksUrl,
     title: joi.string(),
 });

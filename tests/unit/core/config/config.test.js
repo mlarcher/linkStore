@@ -41,7 +41,7 @@ describe('Config Module', () => {
 
         const env = { API_BASE_URL: 'http://someurl.com', FORK: 'true' };
 
-        const child = fork(`${__dirname}/config.fork.runner.js`, ['technical.apiBaseUrl'], { env: env, silent: true });
+        const child = fork(`${__dirname}/config.fork.js`, ['technical.apiBaseUrl'], { env: env, silent: true });
         child.stdout.on('data', (data) => {
             const output = data.toString().replace('\n', '');
             expect(config.get('technical.apiBaseUrl')).not.to.equal(output);

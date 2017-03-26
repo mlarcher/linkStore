@@ -8,10 +8,29 @@ const logger = require('../core/utils/logger');
 const baseDao = require('../dao/baseDao');
 const validationSchemas = require('../validation/schemas');
 
-exports.add = (args, options) => {
+
+/**
+ * Link object definition.
+ *
+ * @typedef {Object} Link
+ * @property {Date} creationDate    - the date of creation
+ * @property {Date} updateDate      - the latest update date
+ * @property {string} url           - the URL of the Link
+ * @property {string} title         - the title of the page
+ * @property {number} votes         - the number of votes
+ */
+
+/**
+ * Add a link
+ *
+ * @param {Object} url          - the URL to add
+ * @param {Object} options      - an object of options regarding the DAO
+ * @returns {Promise.<Link>}    - The promise of a Link object
+ */
+exports.add = (url, options) => {
     const {
               error: validationError,
-          } = joi.validate(args, validationSchemas.links);
+          } = joi.validate(url, validationSchemas.linksUrl);
 
     if (validationError) {
         logger.error(validationError);
@@ -20,14 +39,14 @@ exports.add = (args, options) => {
 
     return new Promise((resolve, reject) => {
 
-        return baseDao.findOne('links', args).then(link => {
+        return baseDao.findOne('links', { url }).then(link => {
             if (link) {
                 return Promise.reject(new Error('URL is already in db'));
             }
         })
         .then(() => {
             // TOIMPROVE: use streams and abort request early if we find the title on the fly ?
-            request(args.url, (error, response, html) => {
+            request(url, (error, response, html) => {
                 if (error) {
                     return reject(new Error(`URL failed, error: ${error.message}`));
                 }
@@ -38,9 +57,11 @@ exports.add = (args, options) => {
                 const $     = cheerio.load(html, { normalizeWhitespace: true, decodeEntities: true });
                 const title = $('title').text();
 
-                return baseDao.insert('links', { url: args.url, title, votes: 0 }, options).then(link => {
-                    resolve(link);
-                }).catch(reject);
+                return baseDao.insert('links', { url, title, votes: 0 }, options)
+                    .then(link => {
+                        resolve(link);
+                    })
+                    .catch(reject);
             });
         })
         .catch(reject);

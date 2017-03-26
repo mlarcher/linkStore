@@ -9,6 +9,7 @@
 'use strict';
 /* eslint-disable no-console */
 
+// TODO: log to file with Winston
 module.exports = {
     info:  (...args) => { console.log(...args); },
     warn:  (...args) => { console.log(...args); },

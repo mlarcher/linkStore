@@ -12,7 +12,7 @@ module.exports = {
     },
     Mutation: {
         addLink: (root, args) => {
-            return linksService.add(args, { fetch: true });
+            return linksService.add(args.url, { fetch: true });
         },
         upVoteLink: (root, args) => {
             return linksService.upVote(args, { fetch: true });
