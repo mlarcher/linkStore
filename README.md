@@ -1,4 +1,4 @@
-# ConvargoTest by Matthieu Larcher
+# linkStore by Matthieu Larcher
 
 
 ## brief
@@ -49,7 +49,8 @@ rencontrés.
 
 See ```make help```
 
-## Setup
+
+## Setup Backend
 
 ### install git hooks
 
@@ -75,9 +76,10 @@ This will create a docker compose stack with :
  - api
  - a node image
 
-## Common controls
 
-Usefull commands are :
+### Common controls
+
+Useful commands are :
 ```make start```: Start docker compose stack after a stop
 ```make stop```: Stop docker compose stack but don't delete it
 ```make restart-api```: Manually restart api container
@@ -85,9 +87,21 @@ Usefull commands are :
 ```make test```: Run tests
 ```make log-api```: Will show you the api logs, including the debugger URLs
 
-## Services address
+### Services address
  * api : http://localhost:8080
  * mysql : localhost:3307/linkstore
     * login: linkstore
     * pass : linkstore
  * wiremock : http://localhost:8081
+
+
+## setup frontend
+
+### install dependencies
+```cd src/client && npm install```
+
+### start local server
+```npm start```
+
+### create production build
+```npm run build```
