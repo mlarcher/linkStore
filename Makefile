@@ -202,6 +202,7 @@ knex-migration-files: ##@db make db knex schema files from sql files
 
 _knex-migration-files: ##@db make db knex schema files from sql files
 	@echo "${YELLOW}Converting sql migration files for knex${RESET}"
+	@mkdir -p migrations/knex
 	@node scripts/migration/make_migration_files.js
 
 db-migrate: ##@db Migrate db schema to db
