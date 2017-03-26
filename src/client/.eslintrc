@@ -60,7 +60,6 @@
             2
         ],
         "react/jsx-key": 1,
-        "react/jsx-max-props-per-line": 2,
         "react/jsx-no-bind": 2,
         "react/jsx-no-duplicate-props": 1,
         "react/jsx-no-literals": 0,

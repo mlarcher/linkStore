@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../style/app.css'; // eslint-disable-line
-import LinksListWithData from '../components/LinksListWithData';
 import {
     ApolloClient,
     ApolloProvider,
@@ -8,6 +7,7 @@ import {
 } from 'react-apollo';
 
 import { typeDefs } from '../graphql/schema';
+import { apiBaseURL } from '../../public/config.json';
 
 
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
@@ -24,7 +24,7 @@ addMockFunctionsToSchema({ schema });
  });*/
 
 const networkInterface = createNetworkInterface({
-    uri: 'http://localhost:8080/graphql',
+    uri: apiBaseURL,
 });
 const client           = new ApolloClient({
     networkInterface,
@@ -36,7 +36,7 @@ class App extends Component {
             <ApolloProvider client={client}>
                 <div className="App">
                     <h1 className="pageTitle">LinkStore</h1>
-                    <LinksListWithData />
+                    { this.props.children }
                 </div>
             </ApolloProvider>
         );

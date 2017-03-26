@@ -25,7 +25,7 @@ module.exports = (req, res) => {
         name: pkg.name,
     };
 
-    fs.readFile(`${__dirname}/../../../server-revision.json`, (err, revisionData) => {
+    fs.readFile(`${__dirname}/../../../revision.json`, (err, revisionData) => {
         if (err) {
             return res.send(baseInfos);
         }

@@ -11,9 +11,9 @@ coverage
 migrations/knex
 *.heapsnapshot
 /docs
-public
+/public
 /dist
 /packages
 /bin
 .unison*
-server-revision.json
+revision.json

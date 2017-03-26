@@ -1,6 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import { gql, graphql } from 'react-apollo';
+import React, { Component, PropTypes }  from 'react';
+import { gql, graphql }                 from 'react-apollo';
+import { Link, withRouter }             from 'react-router';
+
 import { linksListQuery } from './LinksListWithData';
+
 
 class AddLink extends Component {
     constructor(props) {
@@ -23,6 +26,7 @@ class AddLink extends Component {
                 })
                 .then(() => {
                     evt.target.value = '';
+                    this.props.router.push('/');
                 }).catch(err => {
                     this.setState({ error: err.message });
                 });
@@ -30,7 +34,12 @@ class AddLink extends Component {
         };
         return (
             <div>
+                <Link to="/">
+                    Back to list
+                </Link><br />
+                <label htmlFor="addLinkInput">Press Enter to validate your URL</label>
                 <input
+                    id="addLinkInput"
                     className="addLinkBtn"
                     type="text"
                     placeholder="New link"
@@ -62,4 +71,4 @@ AddLink.propTypes = {
     mutate: PropTypes.func.isRequired,
 };
 
-export default AddLinkWithMutation;
+export default withRouter(AddLinkWithMutation);

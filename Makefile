@@ -291,7 +291,7 @@ revision: ##@package make revision file
 	 GIT_COMMIT_MSG=`printf "%s" "${shell git log -1 --pretty=%B}"`; \
 	 GIT_COMMIT_DATE=`git show -s --format=%ci`; \
 	 BUILD_DATE=`date +%Y-%m-%dT%H:%M:%S%z`; \
-     echo "{ \"version\": \"${RELEASE_VERSION}\", \"sha1\": \"$${GIT_COMMIT_SHA1}\", \"msg\": \"$${GIT_COMMIT_MSG}\", \"commitDate\": \"$${GIT_COMMIT_DATE}\", \"buildDate\": \"$${BUILD_DATE}\" }" > "server-revision.json"
+     echo "{ \"version\": \"${RELEASE_VERSION}\", \"sha1\": \"$${GIT_COMMIT_SHA1}\", \"msg\": \"$${GIT_COMMIT_MSG}\", \"commitDate\": \"$${GIT_COMMIT_DATE}\", \"buildDate\": \"$${BUILD_DATE}\" }" > "revision.json"
 
 build-assets: ##@package build static assets
 	@make make-in-node MAKE_RULE=_build-assets

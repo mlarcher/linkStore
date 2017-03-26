@@ -3,7 +3,8 @@ import {
     gql,
     graphql,
 } from 'react-apollo';
-import AddLink from './AddLink';
+import { Link }             from 'react-router';
+
 import UpVote from './UpVote';
 import DownVote from './DownVote';
 
@@ -16,7 +17,9 @@ const LinksList = ({ data: { loading, error, links } }) => {
     }
     return (
         <div className="linksList">
-            <AddLink />
+            <Link to="/add">
+                Add link
+            </Link>
             <ol className="links">
                 { links.map((link, i) => (
                     <li
