@@ -132,6 +132,7 @@ setup: ##@setup Setup watcher + docker compose + install
 	@${DOCKER_COMPOSE} exec api ./scripts/wait-mysql-up.js
 	@make db-migrate
 	@make db-load
+	@cd src/client && npm install
 
 sync-docker-stack: ##@setup Do a docker compose up -d
 	@${DOCKER_COMPOSE} up  --remove-orphans -d
