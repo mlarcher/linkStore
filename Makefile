@@ -182,7 +182,7 @@ download-unison: ##@helper Download unison file sync
     ifeq ("$(wildcard ./bin/unison)","")
 		@echo "${YELLOW}Downloading unison file sync${RESET}"
         ifeq ($(OS), Darwin)
-			@curl -L https://github.com/somatt/docker-sync/releases/download/${DOCKER_SYNC_VERSION}/unison-${DOCKER_SYNC_VERSION}-osx64.tar.gz | tar xvf - --strip-components=1 -C ./bin
+			@curl -L https://github.com/mlarcher/docker-sync/releases/download/${DOCKER_SYNC_VERSION}/unison-${DOCKER_SYNC_VERSION}-osx64.tar.gz | tar xvf - --strip-components=1 -C ./bin
         endif
     endif
 
